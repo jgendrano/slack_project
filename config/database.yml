@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: slack_project_development
+  database: project_slack_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: slack_project
+  #username: project_slack
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: slack_project_test
+  database: project_slack_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: slack_project_production
-  username: slack_project
-  password: <%= ENV['SLACK_PROJECT_DATABASE_PASSWORD'] %>
+  database: project_slack_production
+  username: project_slack
+  password: <%= ENV['PROJECT_SLACK_DATABASE_PASSWORD'] %>
