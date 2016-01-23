@@ -14,6 +14,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-slack'
 gem 'dotenv'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry-rails'
