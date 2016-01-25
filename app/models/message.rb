@@ -1,4 +1,4 @@
-require 'dotenv-rails'
+require 'figaro'
 
 class Message
   attr_reader :slack_username, :ts, :slack_message, :id
@@ -26,8 +26,9 @@ class Message
 
   def self.get_messages_from_slack
     # URI will need to be updated
-    uri = URI("https://slack.com/api/channels.history?token=#{ENV['SLACK_USER_TEST_TOKEN']}")
-    binding.pry
+
+    uri = URI("https://slack.com/api/channels.history?token=#{ENV["slack_user_test_token"]}")
+
     response = Net::HTTP.get_response(uri)
 
     messages = JSON.parse(response.body)['messages'].reverse
@@ -36,9 +37,10 @@ class Message
   def self.get_username_list
     # URI will need to be updated
     # take URI as argument
-    uri = URI("https://slack.com/api/users.list?token=#{ENV['SLACK_TEST_TOKEN']}")
+    uri = URI("https://slack.com/api/users.list?token=#{ENV["slack_test_token"]}")
     response = Net::HTTP.get_response(uri)
     users = JSON.parse(response.body)['members']
+
 
     user_list = Hash.new
     users.each do |user|
