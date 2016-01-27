@@ -30,6 +30,7 @@ GEM
       activemodel (= 4.2.5)
       activesupport (= 4.2.5)
       arel (~> 6.0)
+    activerecord-reset-pk-sequence (0.2.0)
     activesupport (4.2.5)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -225,10 +226,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-reset-pk-sequence
   capybara
   coffee-rails (~> 4.1.0)
   devise
-  dotenv
   dotenv-rails
   factory_girl
   figaro

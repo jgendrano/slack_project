@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.3'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails', '4.2.5'
@@ -13,8 +14,8 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-slack'
-gem 'dotenv'
 gem 'figaro'
+gem 'activerecord-reset-pk-sequence'
 
 group :development, :test do
   gem 'pry-rails'
