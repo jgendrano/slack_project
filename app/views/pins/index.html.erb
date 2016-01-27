@@ -1,0 +1,7 @@
+<h1>Saved Messages</h1>
+<ul>
+<% @pins.each do |pin| %>
+  <li><b><%= "#{pin.slack_username}"%></b> <%=
+  "(#{DateTime.strptime(pin.ts, '%s')}):
+   #{pin.slack_message}"%></li>
+<% end %>
