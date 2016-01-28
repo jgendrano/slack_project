@@ -4,27 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
+    <title><%= content_for?(:title) ? yield(:title) : "SlackTrack" %></title>
+      <link href='//fonts.googleapis.com/css?family=Leckerli One' rel='stylesheet' type='text/css'>
+      <link href='//fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= google_webfonts_init({
+      google: ['Roboto Condensed']
+    }) %>
+    <%= google_webfonts_init({
+      google: ['Leckerli One']
+    }) %>
   </head>
 
   <body>
-<ul class="nav navbar-nav">
 
-  <% if user_signed_in? %>
-    <% if !(current_user.name == nil) %>
-      <li> Hi <%= current_user.name %>!</li>
-    <% else %>
-      <li> Hello! </li>
-    <% end %>
-    <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to 'Sign In', '/users/auth/slack' %></li>
-  <% end %>
-</ul>
+    <%= render 'layouts/header' %>
     <%= yield %>
 
   </body>

@@ -1,9 +1,17 @@
-<h1>Slack Channels</h1>
-<% if !current_user.nil? %>
-  <ul>
-    <% @channels.each do |channel| %>
-      <li><b><#<%= "#{channel.channel_name}"%>:</b>
-        <%= "#{channel.purpose}" %> </li>
+<body>
+<div class="row">
+
+  <div class="large-12 columns" style="background-color:white;">
+    <b><center><h2 class="roboto-stuff">Slack Channels</h2></center></b>
+    <% if !current_user.nil? %>
+      <ul>
+        <% @channels.each do |channel| %>
+          <li><b><%= link_to "##{channel.channel_name}", channel_path(channel.id) %>:
+          </b> <%= "#{channel.purpose}" %></li>
+        <% end %>
+    </ul>
     <% end %>
-</ul>
-<% end %>
+  </div>
+
+</div>
+</body>

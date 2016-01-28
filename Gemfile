@@ -16,6 +16,7 @@ gem 'omniauth'
 gem 'omniauth-slack'
 gem 'figaro'
 gem 'activerecord-reset-pk-sequence'
+gem 'google-webfonts-rails'
 
 group :development, :test do
   gem 'pry-rails'
@@ -30,4 +31,5 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'rails_layout'
 end
