@@ -34,7 +34,11 @@ class Message
     users = JSON.parse(response.body)['members']
     user_list = Hash.new
     users.each do |user|
-      user_list[user["id"]] = "#{user["real_name"]}"
+      if user["real_name"] == ''
+        user_list[user["id"]] = "@#{user["name"]}"
+      else
+        user_list[user["id"]] = "@#{user["name"]} (#{user["real_name"]})"
+      end
     end
     user_list
   end

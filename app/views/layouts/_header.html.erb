@@ -14,8 +14,10 @@
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Sign In', '/users/auth/slack' %></li>
+
       <% end %>
-      <a href="#"><span>Menu</span></a>
     </li>
+    <li><b><%= link_to 'Channels', channels_path %> ||
+      <%= link_to 'Pinned Messages', pins_path %></li></b>
   </ul>
 </nav>

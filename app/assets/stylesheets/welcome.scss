@@ -23,6 +23,7 @@ body {
 
 .roboto-stuff {
   font-family: 'Roboto Condensed', sans-serif;
+  display: inline;
 }
 
 
@@ -71,6 +72,18 @@ body {
     #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
     #000 0px 0px 2px, #000 0px 0px 15px;
   -webkit-font-smoothing: antialiased;
+ }
+
+ .channel-title {
+  font-family: "Leckerli One", sans-serif;
+  font-size: 48px;
+  color: #fff;
+  text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px;
+    display: inline;
  }
 
 .test-box {
