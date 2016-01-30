@@ -1,7 +1,22 @@
-<h1>Saved Messages</h1>
-<ul>
-<% @pins.each do |pin| %>
-  <li><b><%= "#{pin.slack_username}"%></b> <%=
-  "(#{DateTime.strptime(pin.ts, '%s')}):
-   #{pin.slack_message}"%></li>
-<% end %>
+<div class="row">
+
+  <div class="large-12 columns" style="background-color:white;">
+    <b><center><h2 class="roboto-stuff"><%= current_user.name%>'s Recently Pinned Messages</h2>
+    </center></b>
+    <% if !current_user.nil? %>
+      <ul>
+      <% @pins.each do |pin| %>
+        <% formatted_msg = pin.slack_message %>
+        <li><b><%= "#{pin.slack_username}"%></b> <%=
+        "(#{DateTime.strptime(pin.ts, '%s')}):
+         #{pin.slack_message.gsub(URI.regexp, '<a href="\0">\0</a>')}"%></li>
+      <% end %>
+      </ul>
+      <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>
+
+    <% end %>
+  </div>
+
+</div>
+</body>
+>>>>>>> make_fixes_and_connections
