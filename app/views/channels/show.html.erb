@@ -7,6 +7,7 @@
     <% if !current_user.nil? %>
       <ul>
       <% @messages.each do |message| %>
+
         <li><b><%= "#{message.slack_username}"%></b> <%=
         "(#{DateTime.strptime(message.ts, '%s')}):
          #{message.slack_message}"%>

@@ -63,16 +63,20 @@ body {
   vertical-align: bottom;
   position: relative;
   top: 35px;
-  left: 15px;
+  left: 10px;
   color: #fff;
-  text-shadow: #000 0px 0px 1px, #000 0px 0px 1px , #000 0px 0px 1px ,
-  #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-  #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-  #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-  #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-  #000 0px 0px 1px, #000 0px 0px 15px;
+  text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
+    #000 0px 0px 2px, #000 0px 0px 15px;
   -webkit-font-smoothing: antialiased;
  }
+
+.test-box {
+  border-radius: 50px;
+
+}
 
  .test-move {
    position: relative;
