@@ -5,14 +5,21 @@
       <h3 class="roboto-stuff"><%= current_user.name%></h3></center><br>
     </center></b>
 
-      <%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
-      <%= f.hidden_field :id, :value => @message.id %>
+      <% x = @message.slack_message %>
+      <% x = x.tr('<>', '') %>
+      <% y = auto_link(x, html: { target: '_blank' }) %>
+      <li><b><%= "#{@message.slack_username}"%></b> <%=
+      "(#{@message.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+       <%= y %>
+
+      <center><%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
+      <%= f.hidden_field :id %>
       <%= f.hidden_field :user_id, :value => @message.user_id %>
       <%= f.hidden_field :slack_username, :value => @message.slack_username %>
       <%= f.hidden_field :slack_message, :value => @message.slack_message %>
-      <%= f.hidden_field :ts, :value => @message.ts %>
-      <%= submit_tag "Join" %>
-      <% end %>
+      <%= f.hidden_field :ts, :value => @message.ts %><br>
+      <%= submit_tag "Add Pinned Message" %>
+      <% end %></center><br>
 
 
 

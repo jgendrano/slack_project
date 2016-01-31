@@ -20,7 +20,8 @@ class PinsController < ApplicationController
     # pin_params[:slack_username]= @message.slack_username
     # pin_params[:slack_message] = @message.slack_message
     # pin_params[:ts] = @message.ts
-    binding.pry
+
+    pin_params[:id] = @counter
     @pin = Pin.create(pin_params)
     if @pin.save
       flash[:success] = "Pin added successfully!"
