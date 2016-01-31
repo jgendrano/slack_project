@@ -1,17 +1,18 @@
 <body>
 <div class="row">
-
-  <div class="large-12 columns" style="background-color:white;">
-    <b><center><h2 class="roboto-stuff">Slack Channels</h2></center></b>
-    <% if !current_user.nil? %>
-      <ul>
-        <% @channels.each do |channel| %>
-          <li><b><%= link_to "##{channel.channel_name}", channel_path(channel.id) %>:
-          </b> <%= "#{channel.purpose}" %></li>
-        <% end %>
-    </ul>
-    <% end %>
-  </div>
+  <div class="test-move">
+    <div class="large-12 columns test-box" style="background-color:white;">
+      <center><h2 class="channel-title"><%= @team_name %></h2><br>
+      <h3 class="roboto-stuff">Current Channels</h3></center><br>
+      <% if !current_user.nil? %>
+        <ul>
+          <% @channels.each do |channel| %>
+            <li><b><%= link_to "##{channel.channel_name}", channel_path(channel.id) %>:
+            </b> <%= "#{channel.purpose}" %></li>
+          <% end %>
+      </ul>
+      <% end %>
+    </div>
 
 </div>
 </body>

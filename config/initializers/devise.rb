@@ -20,7 +20,5 @@ Devise.setup do |config|
   #Add your ID and secret here
   #ID first, secret second
   config.omniauth :slack, ENV['SLACK_APP_ID'], ENV['SLACK_APP_SECRET'],
-  scope: 'channels:read, channels:history, chat:write:user, users:read'
-
-
+  scope: 'channels:read, channels:history, team:read, users:read'
 end

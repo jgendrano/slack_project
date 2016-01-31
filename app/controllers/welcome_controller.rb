@@ -1,5 +1,11 @@
 class WelcomeController < ApplicationController
+
   def index
-    render :layout => 'navwelcome'
+    if user_signed_in?
+      redirect_to landings_path
+    else
+      render :layout => 'navwelcome'
+    end
   end
+  
 end
