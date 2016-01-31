@@ -7,7 +7,6 @@ class PinsController < ApplicationController
   end
 
   def create
-    binding.pry
     message = Message.find(params["format"])
     @pin = Pin.create(user_id: current_user.id, slack_username: message["slack_username"],
     ts: message["ts"], slack_message: message["slack_message"])

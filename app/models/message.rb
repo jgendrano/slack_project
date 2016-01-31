@@ -12,34 +12,34 @@ class Message < ActiveRecord::Base
       else
         slack_username = user_list[message["user"]]
       end
-      slack_message = message["text"]
+
       raw_slack_message = message["text"]
+
+      while !(raw_slack_message[/\<.*?\>/].nil?) && (raw_slack_message[/\<.*?\>/].length == 12) do
+        mod_user = raw_slack_message[/\<.*?\>/]
+        mod_user.slice!(0..1)
+        mod_user.slice!(-1)
+        slack_message = raw_slack_message.sub!(raw_slack_message[/\<.*?\>/], user_list[mod_user])
+      end
+
+      if !(raw_slack_message[/\<.*?\>/].nil?) && !(raw_slack_message.include? "http") && !(raw_slack_message.include? "<!")
+        mod_user = raw_slack_message[/\@.*?\|/]
+        x = mod_user.split("")
+        x.shift
+        x.pop
+        slack_message = raw_slack_message.sub(raw_slack_message[/\<.*?\>/], user_list[x.join("")])
+      else
+        slack_message = raw_slack_message
+      end
+
       timestamp = DateTime.strptime(message["ts"], '%s')
-      # self.message_parse(raw_slack_message)
       id = count
       count = count + 1
       new(slack_username: slack_username, ts: timestamp, slack_message:
       slack_message, id: id, user_id: current_user.id)
     end
+    return current_messages
   end
-
-  def self.messsage_parse(raw_slack_message)
-    if raw_slack_message[/\<.*?\>/]
-      mod_user = raw_slack_message[/\@.*?\|/]
-      x = mod_user.split("")
-      x.shift
-      x.pop
-      slack_message = raw_slack_message.sub(raw_slack_message[/\<.*?\>/], user_list[x.join("")])
-    end
-    # if raw_slack_message[/\<@.*?\>/].length == 12
-    #   x = raw_slack_message
-    #   x.slice!(0..1)
-    #   x.slice!(-1)
-    #   slack_message = raw_slack_message.sub(raw_slack_message[/\<@.*?\>/], user_list[x])
-    # end
-    return slack_message
-  end
-
 
   def self.get_messages_from_slack(current_user, channel)
     uri = URI("https://slack.com/api/channels.history?token=#{current_user.token}&channel=#{channel.channel_id}")
