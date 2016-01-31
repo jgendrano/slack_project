@@ -17,6 +17,7 @@ gem 'omniauth-slack'
 gem 'figaro'
 gem 'activerecord-reset-pk-sequence'
 gem 'google-webfonts-rails'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'pry-rails'

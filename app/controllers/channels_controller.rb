@@ -18,6 +18,7 @@ before_action :authenticate_user!
   end
 
   def show
+    get_team_info
     @channel = Channel.find(params[:id])
     Message.delete_all
     Message.reset_pk_sequence
