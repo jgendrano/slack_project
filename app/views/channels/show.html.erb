@@ -12,9 +12,10 @@
       <% x = x.tr('<>', '') %>
       <% y = auto_link(x, html: { target: '_blank' }) %>
 
-      <li><b><%= "#{message.slack_username}" %></b>
-        <%= "(#{message.ts.strftime('%m/%d/%Y %I:%M%p')}):"%><%= y %> |
-        <b><%= link_to "Save", pins_path(message), method: "post" %></b>
+      <li><b><%="#{message.slack_username}"%></b>
+        <%= "(#{message.ts.strftime('%m/%d/%Y %I:%M%p')}): "%><%= y %> <b>||
+         <%= link_to "Save", pins_path(message), method: "post" %></b>
+
       </li>
       <% end %><br>
       <b><center><b><h4><%= link_to "Return to Slack Channels", channels_path %></b></h4></center><br>
