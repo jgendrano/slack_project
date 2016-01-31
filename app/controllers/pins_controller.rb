@@ -6,10 +6,22 @@ class PinsController < ApplicationController
     @pins = Pin.where(user_id: current_user.id)
   end
 
+  def new
+    @message = Message.find(params["format"])
+    @pin = Pin.new
+     binding.pry
+  end
+
   def create
-    message = Message.find(params["format"])
-    @pin = Pin.create(user_id: current_user.id, slack_username: message["slack_username"],
-    ts: message["ts"], slack_message: message["slack_message"])
+    # message = Message.find(params["format"])
+    # @message = Message.find(params["format"])
+    # pin_params[:id] = @message.id
+    # pin_params[:user_id] = @message.user_id
+    # pin_params[:slack_username]= @message.slack_username
+    # pin_params[:slack_message] = @message.slack_message
+    # pin_params[:ts] = @message.ts
+    binding.pry
+    @pin = Pin.create(pin_params)
     if @pin.save
       flash[:success] = "Pin added successfully!"
       redirect_to pins_path
@@ -31,8 +43,8 @@ private
     params.require(:pin).permit(
       :id,
       :user_id,
-      :user,
-      :text,
+      :slack_username,
+      :slack_message,
       :ts
     )
   end

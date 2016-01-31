@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'activerecord-reset-pk-sequence'
 gem 'google-webfonts-rails'
 gem 'rails_autolink'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'pry-rails'

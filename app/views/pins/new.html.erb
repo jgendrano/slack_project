@@ -1,0 +1,26 @@
+<div class="row">
+
+  <div class="large-12 columns test-move test-box" style="background-color:white;">
+    <b><center><h2 class="roboto-stuff channel-title">New Pinned Message</h2><br>
+      <h3 class="roboto-stuff"><%= current_user.name%></h3></center><br>
+    </center></b>
+
+      <%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
+      <%= f.hidden_field :id, :value => @message.id %>
+      <%= f.hidden_field :user_id, :value => @message.user_id %>
+      <%= f.hidden_field :slack_username, :value => @message.slack_username %>
+      <%= f.hidden_field :slack_message, :value => @message.slack_message %>
+      <%= f.hidden_field :ts, :value => @message.ts %>
+      <%= submit_tag "Join" %>
+      <% end %>
+
+
+
+
+      <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>
+
+
+  </div>
+
+</div>
+</body>
