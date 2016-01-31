@@ -8,10 +8,13 @@
       <ul>
       <% @pins.each do |pin| %>
 
+        <% x = pin.slack_message %>
+        <% x = x.tr('<>', '') %>
+        <% y = auto_link(x, html: { target: '_blank' }) %>
         <li><b><%= "#{pin.slack_username}"%></b> <%=
-        "(#{DateTime.strptime(pin.ts, '%s').strftime('%m/%d/%Y %I:%M%p')}):
-         #{pin.slack_message.gsub(URI.regexp, '<a href="\0">\0</a>')}"%>
-        <%= button_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete, class: 'button-delete' %>
+        "(#{pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+         <%= y %> <b>||
+        <%= link_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></b>
        </li>
       <% end %>
       </ul>
