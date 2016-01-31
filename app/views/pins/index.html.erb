@@ -7,7 +7,7 @@
     <% if !current_user.nil? %>
       <ul>
       <% @pins.each do |pin| %>
-        <% formatted_msg = pin.slack_message %>
+
         <li><b><%= "#{pin.slack_username}"%></b> <%=
         "(#{DateTime.strptime(pin.ts, '%s').strftime('%m/%d/%Y %I:%M%p')}):
          #{pin.slack_message.gsub(URI.regexp, '<a href="\0">\0</a>')}"%>
