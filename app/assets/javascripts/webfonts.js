@@ -1,11 +1,11 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8">
+// <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+// <script type="text/javascript" charset="utf-8">
 
  $(function() { $('body').hide().show(); });
-</script>
+// </script>
 
 
-<script type="text/javascript">
+// <script type="text/javascript">
 
 //JavaScript goes here
 
@@ -38,4 +38,4 @@ function loadFonts() {
   loadFonts();
   })();
 
-</script>
+// </script>
