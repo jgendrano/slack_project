@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:slack]
 
+  has_many :channels
   has_many :messages
 
   def password_required?

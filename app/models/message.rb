@@ -1,11 +1,6 @@
-class Message
-  attr_reader :slack_username, :ts, :slack_message, :id
-  def initialize(slack_username, timestamp, slack_message, id)
-    @slack_username = slack_username
-    @ts = timestamp
-    @slack_message = slack_message
-    @id = id
-  end
+class Message < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :channel
 
   def self.current_messages(current_user, channel)
     count = 1
@@ -19,11 +14,12 @@ class Message
       end
       slack_message = message["text"]
       raw_slack_message = message["text"]
-      timestamp = message["ts"]
+      timestamp = DateTime.strptime(message["ts"], '%s')
       # self.message_parse(raw_slack_message)
       id = count
       count = count + 1
-      new(slack_username, timestamp, slack_message, id)
+      new(slack_username: slack_username, ts: timestamp, slack_message:
+      slack_message, id: id, user_id: current_user.id)
     end
   end
 

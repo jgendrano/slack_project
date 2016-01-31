@@ -7,9 +7,10 @@ class PinsController < ApplicationController
   end
 
   def create
-    pin = params["data"]
-    @pin = Pin.create(user_id: current_user.id, slack_username: pin["user"],
-    ts: pin["ts"], slack_message: pin["text"])
+    binding.pry
+    message = Message.find(params["format"])
+    @pin = Pin.create(user_id: current_user.id, slack_username: message["slack_username"],
+    ts: message["ts"], slack_message: message["slack_message"])
     if @pin.save
       flash[:success] = "Pin added successfully!"
       redirect_to pins_path

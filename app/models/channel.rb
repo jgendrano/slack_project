@@ -1,5 +1,6 @@
 class Channel < ActiveRecord::Base
   belongs_to :user
+  has_many :messages
 
   def self.current_channels(current_user)
     count = 1

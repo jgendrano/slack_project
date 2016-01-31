@@ -19,7 +19,14 @@ before_action :authenticate_user!
 
   def show
     @channel = Channel.find(params[:id])
+    Message.delete_all
+    Message.reset_pk_sequence
     @messages = Message.current_messages(current_user, @channel)
+    @messages.each do |message|
+      Message.create(slack_username: message.slack_username,
+      ts: message.ts, slack_message: message.slack_message,
+      id: message.id, user_id: current_user.id)
+    end
   end
 
 private

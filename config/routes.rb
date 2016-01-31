@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   # get '/auth/:provider/callback', to: 'sessions#create'
 
   resources :channels
+  resources :messages
   resources :pins
 
-  # post "/pins" => "pins#create", :as => :create_pin
-  get ':action' => 'static#:action'
+  post "/pins" => "pins#create"
+  # get ':action' => 'static#:action'
 end
