@@ -8,20 +8,16 @@
 
       <ul>
       <% @messages.each do |message| %>
+      <% x = message.slack_message %>
+      <% x = x.tr('<>', '') %>
+      <% y = auto_link(x, html: { target: '_blank' }) %>
+
       <li><b><%= "#{message.slack_username}" %></b>
-        <%= "(#{message.ts.strftime('%m/%d/%Y %I:%M%p')}):
-        #{message.slack_message}" %>
-        <%= link_to "Save", pins_path(message), method: "post" %>
-      <!-- <%= link_to "Save", {:controller => "pins",
-                       :action => "create",
-                       :user_id => current_user.id,
-                       :ts => message.ts,
-                       :slack_message => message.slack_message,
-                       :slack_username => message.slack_username},
-                       :method => "post" %> -->
+        <%= "(#{message.ts.strftime('%m/%d/%Y %I:%M%p')}):"%><%= y %> |
+        <b><%= link_to "Save", pins_path(message), method: "post" %></b>
       </li>
-      <% end %>
-      <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>
+      <% end %><br>
+      <b><center><b><h4><%= link_to "Return to Slack Channels", channels_path %></b></h4></center><br>
     </ul>
     <% end %>
   </div>
