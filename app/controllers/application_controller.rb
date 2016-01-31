@@ -27,6 +27,23 @@ class ApplicationController < ActionController::Base
     @team_pic = team["team"]["icon"]["image_132"]
   end
 
+  def get_username_list(token)
+    uri = URI("https://slack.com/api/users.list?token=#{token}")
+    response = Net::HTTP.get_response(uri)
+    users = JSON.parse(response.body)['members']
+    user_list = Hash.new
+    users.each do |user|
+      # if user["real_name"] == '' && user["name"] == ''
+      #   ser_list[user["id"]] = "@#{user["username"]}"
+      if user["real_name"] == ''
+        user_list[user["id"]] = "@#{user["name"]}"
+      else
+        user_list[user["id"]] = "@#{user["name"]} (#{user["real_name"]})"
+      end
+    end
+    user_list
+  end
+
 
 
 end

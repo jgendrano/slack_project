@@ -9,9 +9,8 @@
       <% @messages.each do |message| %>
 
         <li><b><%= "#{message.slack_username}"%></b> <%=
-        "(#{DateTime.strptime(message.ts, '%s').strftime('%m/%d/%Y at %I:%M%p')}):
+        "(#{DateTime.strptime(message.ts, '%s')}):
          #{message.slack_message}"%>
-        <!-- <%= link_to "Save", pins_path(message), method: :post %> -->
         <%= link_to "Save", pins_path(data: { text: message.slack_message,
           user: message.slack_username, ts: message.ts }), method: :post %>
        </li>
