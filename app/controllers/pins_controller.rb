@@ -9,19 +9,9 @@ class PinsController < ApplicationController
   def new
     @message = Message.find(params["format"])
     @pin = Pin.new
-     binding.pry
   end
 
   def create
-    # message = Message.find(params["format"])
-    # @message = Message.find(params["format"])
-    # pin_params[:id] = @message.id
-    # pin_params[:user_id] = @message.user_id
-    # pin_params[:slack_username]= @message.slack_username
-    # pin_params[:slack_message] = @message.slack_message
-    # pin_params[:ts] = @message.ts
-
-    pin_params[:id] = @counter
     @pin = Pin.create(pin_params)
     if @pin.save
       flash[:success] = "Pin added successfully!"
