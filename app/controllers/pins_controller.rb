@@ -1,6 +1,9 @@
 class PinsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @pins = Pin.all
+    get_team_info
+    @pins = Pin.where(user_id: current_user.id)
   end
 
   def create
@@ -8,7 +11,7 @@ class PinsController < ApplicationController
     @pin = Pin.create(user_id: current_user.id, slack_username: pin["user"],
     ts: pin["ts"], slack_message: pin["text"])
     if @pin.save
-      flash[:success] = "Book added successfully!"
+      flash[:success] = "Pin added successfully!"
       redirect_to pins_path
     else
       flash[:warning] = @pin.errors.full_messages.join(', ')
@@ -16,10 +19,18 @@ class PinsController < ApplicationController
     end
   end
 
+  def destroy
+    @pin = Pin.find(params[:id])
+    @pin.destroy
+    redirect_to pins_path
+  end
+
 private
 
   def pin_params
     params.require(:pin).permit(
+      :id,
+      :user_id,
       :user,
       :text,
       :ts

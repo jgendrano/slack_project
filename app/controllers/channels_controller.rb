@@ -4,6 +4,7 @@ before_action :authenticate_user!
     if !(current_user.nil?)
       Channel.delete_all
       Channel.reset_pk_sequence
+      get_team_info
       create
     end
   end

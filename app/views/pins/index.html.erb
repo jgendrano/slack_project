@@ -1,15 +1,18 @@
 <div class="row">
 
-  <div class="large-12 columns" style="background-color:white;">
-    <b><center><h2 class="roboto-stuff"><%= current_user.name%>'s Recently Pinned Messages</h2>
+  <div class="large-12 columns test-move test-box" style="background-color:white;">
+    <b><center><h2 class="roboto-stuff channel-title">Pinned Messages</h2><br>
+      <h3 class="roboto-stuff"><%= current_user.name%></h3></center><br>
     </center></b>
     <% if !current_user.nil? %>
       <ul>
       <% @pins.each do |pin| %>
         <% formatted_msg = pin.slack_message %>
         <li><b><%= "#{pin.slack_username}"%></b> <%=
-        "(#{DateTime.strptime(pin.ts, '%s')}):
-         #{pin.slack_message.gsub(URI.regexp, '<a href="\0">\0</a>')}"%></li>
+        "(#{DateTime.strptime(pin.ts, '%s').strftime('%m/%d/%Y %I:%M%p')}):
+         #{pin.slack_message.gsub(URI.regexp, '<a href="\0">\0</a>')}"%>
+        <%= button_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete, class: 'button-delete' %>
+       </li>
       <% end %>
       </ul>
       <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>

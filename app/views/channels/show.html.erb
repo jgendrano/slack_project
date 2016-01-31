@@ -1,9 +1,9 @@
 
 <div class="row">
 
-  <div class="large-12 columns" style="background-color:white;">
-    <b><center><h2 class="roboto-stuff">#<%= @channel.channel_name%>: Recent Messages</h2>
-    </center></b>
+  <div class="large-12 columns test-box test-move" style="background-color:white;">
+    <center><h2 class="channel-title">#<%= @channel.channel_name%></h2><b><h2 class="roboto-stuff"> - Recent Messages</h2>
+    </center></b><br>
     <% if !current_user.nil? %>
       <ul>
       <% @messages.each do |message| %>
@@ -11,7 +11,6 @@
         <li><b><%= "#{message.slack_username}"%></b> <%=
         "(#{DateTime.strptime(message.ts, '%s')}):
          #{message.slack_message}"%>
-        <!-- <%= link_to "Save", pins_path(message), method: :post %> -->
         <%= link_to "Save", pins_path(data: { text: message.slack_message,
           user: message.slack_username, ts: message.ts }), method: :post %>
        </li>
