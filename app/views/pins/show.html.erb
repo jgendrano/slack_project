@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div class="large-12 columns test-move test-box" style="background-color:white;">
+    <center><b><h2 class="roboto-stuff channel-title"><font color = "gray">Pinned Message:</font> <%= @pin.title%></h2><br></b></center><br>
+
+        <% x = @pin.slack_message %>
+        <% x = x.tr('<>', '') %>
+        <% y = auto_link(x, html: { target: '_blank' }) %>
+
+        <b><%= "#{@pin.slack_username}"%></b>
+
+          <%=
+        "(#{@pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+         <%= y %><br></li><br>
+
+        <center><b><u><%= current_user.name%>'s Notes</b></u><br>
+          <%= @pin.note %><br>
+          <%= link_to 'Delete', { controller: "pins", action: :destroy, id: @pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></p>
+        </center>

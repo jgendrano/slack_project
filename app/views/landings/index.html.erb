@@ -3,19 +3,19 @@
 <div class="test-move">
   <div class="large-12 columns test-box" style="background-color:white;">
 
-    <b><center><h2 class="roboto-stuff">Welcome to <%= image_tag "slacktracklogo.png", class: 'align-me' %>!</h2></center></b>
+    <b><center><h2 class="roboto-stuff">Welcome to <%= image_tag "slacktracklogo-small.png", class: 'align-me' %>!</h2></center></b>
     <center><h4>Signed in as <b><%= current_user.name %></b> in <b><%= @team_name %></b><br></h4>
       <h5><i><a href="http://<%= @team_domain %>.slack.com" target="_blank"><%= @team_domain %>.slack.com</a></i></h5></center><br>
-      <p class="splash-text">SlackTrack was built with love by <a href="http://www.twitter.com" target="blank">Julie
+    <center>  <p class="splash-text">SlackTrack was built with love by <a href="http://www.twitter.com" target="blank">Julie
         Gendrano</a> during <a href="http://www.launchacademy.com" target="blank">Launch Academy</a>'s Winter 2015
-        Cohort.  Slack is a real-time instant-messaging and collaboration system that many corporate, educational, and
-        personal teams of people are using.  Most users of Slack utilize Slack's free service to discuss project ideas
-        and share useful links.  However, Slack's free team structure only allows for the most recent 10,000 messages
+        Cohort.  Slack is a real-time instant-messaging system that many corporate, educational, and
+        personal teams use to share ideas and collaborate.  Most Slack users utilize their free service to discuss project ideas
+        and post useful links.  However, Slack's free team structure only allows for the most recent 10,000 messages
         to be saved.  SlackTrack allows you to sign in with Slack and access a list of recent messages, giving you the
         ability to pin and sort messages, links, and ideas before they disappear due to Slack Team capacity constraints.<br><br>
 
         To begin, please browse your Slack Team's available public channels
-       or view your existing saved Pins:<br><br>
+       or view your existing saved Pins:<br><br></center>
 
         <!-- <span class="align-me-next"><%= button_to "Channels", channels_path, {class: 'button'} %></span>
         <span class="align-me-next"><%= button_to "Saved Messages", pins_path, {class: 'button'} %></span> -->

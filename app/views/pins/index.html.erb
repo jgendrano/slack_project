@@ -1,24 +1,46 @@
 <div class="row">
 
   <div class="large-12 columns test-move test-box" style="background-color:white;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <b><center><h2 class="roboto-stuff channel-title">Pinned Messages</h2><br>
-      <h3 class="roboto-stuff"><%= current_user.name%></h3></center><br>
+
+      <h5><%= link_to "Return to Slack Channels", channels_path %></h5></center><br><br>
     </center></b>
     <% if !current_user.nil? %>
-      <ul>
       <% @pins.each do |pin| %>
 
         <% x = pin.slack_message %>
-        <% x = x.tr('<>', '') %>
+
+        <% x = h truncate(x.tr('<>', ''), length: 200) %>
         <% y = auto_link(x, html: { target: '_blank' }) %>
-        <li><b><%= "#{pin.slack_username}"%></b> <%=
-        "(#{pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
-         <%= y %> <b>||
-        <%= link_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></b>
-       </li>
+
+        <div class="span_4 column">
+          <center>
+            <div class="small-title"><b><%= pin.title %></div></b>
+            <div class="small-text"><b><%= "#{pin.slack_username}"%></b> <%=
+          "(#{pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+           <%= y %><br><br></div>
+            <div class="small-note"><b><%= h truncate(pin.note, length: 150) %><br></b></div>
+            <p class="small-link"><%= link_to 'View', pin_path(pin.id) %> |
+            <%= link_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></p>
+          </center>
+        </div>
       <% end %>
-      </ul>
-      <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>
+    </ul><br><br><br>
+      <b><center><center><b><br>
 
     <% end %>
   </div>
