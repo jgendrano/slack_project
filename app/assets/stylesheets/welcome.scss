@@ -22,6 +22,10 @@ body {
    to   { opacity: 1; }
 }
 
+.input-box {
+  height: 200px;
+}
+
 .roboto-stuff {
   font-family: 'Roboto Condensed', sans-serif;
   display: inline;
@@ -217,7 +221,7 @@ bottom:   0;
   border: 1px solid #018dc4;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  font: normal normal bold 20px/normal "annie-use-your-telescope", Helvetica, sans-serif;
+  font: normal normal bold 30px/normal "annie-use-your-telescope", Helvetica, sans-serif;
   color: rgba(255,255,255,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -296,10 +300,10 @@ bottom:   0;
   position: absolute;
   font-size: 16px;
   bottom: -10px;
-  left: 35%;
+  left: 30%;
 }
 
 .small-text {
-  height: 260px;
+  height: 240px;
 
 }

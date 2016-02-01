@@ -1,20 +1,6 @@
 <div class="row">
 
   <div class="large-12 columns test-move test-box" style="background-color:white;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <b><center><h2 class="roboto-stuff channel-title">Pinned Messages</h2><br>
 
       <h5><%= link_to "Return to Slack Channels", channels_path %></h5></center><br><br>
@@ -33,8 +19,9 @@
             <div class="small-text"><b><%= "#{pin.slack_username}"%></b> <%=
           "(#{pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
            <%= y %><br><br></div>
-            <div class="small-note"><b><%= h truncate(pin.note, length: 150) %><br></b></div>
-            <p class="small-link"><%= link_to 'View', pin_path(pin.id) %> |
+            <div class="small-note"><b><u>My Notes:</u></b><br><%= h truncate(pin.note, length: 150) %><br></div>
+            <p class="small-link"><%= link_to 'View', { controller: "pins", action: :show, id: pin.id } %> |
+            <%= link_to 'Edit', { controller: "pins", action: :edit, id: pin.id }  %> |
             <%= link_to 'Delete', { controller: "pins", action: :destroy, id: pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></p>
           </center>
         </div>

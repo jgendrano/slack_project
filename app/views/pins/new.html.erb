@@ -48,8 +48,8 @@
         <%= f.label :title %>
         <%= f.text_field :title, placeholder: "Enter a title for your saved Slack Message here.", maxlength: 30, class: "input"%><br>
         <%= f.label :note %>
-        <%= f.text_area :note, placeholder: "Enter your description for your message here.", size: 1000, class: "input"%><br>
-        <%= submit_tag "Add Pinned Message" %>
+        <%= f.text_area :note, placeholder: "Enter your description for your message here.", size: 1000, class: "input-box"%><br>
+        <%= submit_tag "Add Pinned Message", class:'button-delete' %>
         <% end %></center><br>
       <% end %>
       <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>

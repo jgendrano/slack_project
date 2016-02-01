@@ -26,7 +26,23 @@ class PinsController < ApplicationController
   def show
     get_team_info
     @pin = Pin.find(params[:id])
-  end  
+  end
+
+  def edit
+    get_team_info
+    @pin = Pin.find(params[:id])
+  end
+
+  def update
+    @pin = Pin.find(params[:id])
+    @pin.update(pin_params)
+    if @pin.update(pin_params)
+      flash[:success] = "Pinned message updated successfully!"
+      redirect_to pins_path
+    else
+      create_or_update_failure
+    end
+  end
 
   def destroy
     @pin = Pin.find(params[:id])
@@ -47,4 +63,9 @@ private
       :note
     )
   end
+end
+
+def create_or_update_failure
+  flash[:warning] = @review.errors.full_messages.join(', ')
+  render :new
 end

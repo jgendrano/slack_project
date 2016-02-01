@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="large-12 columns test-move test-box" style="background-color:white;">
-    <center><b><h2 class="roboto-stuff channel-title"><font color = "gray">Pinned Message:</font> <%= @pin.title%></h2><br></b></center><br>
+    <center><b><h2 class="roboto-stuff channel-title"><font color = "gray">Pinned Message:</font><br> <%= @pin.title%></h2><br></b></center><br>
 
         <% x = @pin.slack_message %>
         <% x = x.tr('<>', '') %>
@@ -14,6 +14,9 @@
          <%= y %><br></li><br>
 
         <center><b><u><%= current_user.name%>'s Notes</b></u><br>
-          <%= @pin.note %><br>
-          <%= link_to 'Delete', { controller: "pins", action: :destroy, id: @pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></p>
+          <%= @pin.note %><br><br>
+          <%= link_to 'Edit', { controller: "pins", action: :edit, id: @pin.id }  %> |
+          <%= link_to 'Delete', { controller: "pins", action: :destroy, id: @pin.id }, data: { confirm: "Are you sure?" }, method: :delete %></p><br>
+          <%= link_to "Return to Slack Channels", channels_path %><br>
+          <%= link_to "Return to Pinned Messages", pins_path %>
         </center>
