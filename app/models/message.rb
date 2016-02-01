@@ -15,6 +15,12 @@ class Message < ActiveRecord::Base
 
       raw_slack_message = message["text"]
 
+      while (raw_slack_message.include? "<mailto:") do
+        x = raw_slack_message[/\<mailto.*?\>/]
+        x.slice!(0..7)
+        slack_message = raw_slack_message.sub!(raw_slack_message[/\<mailto.*?\>/], x.split("|")[0])
+      end
+
       while !(raw_slack_message[/\<.*?\>/].nil?) && (raw_slack_message[/\<.*?\>/].length == 12) do
         mod_user = raw_slack_message[/\<.*?\>/]
         mod_user.slice!(0..1)
@@ -28,6 +34,11 @@ class Message < ActiveRecord::Base
         x.shift
         x.pop
         slack_message = raw_slack_message.sub(raw_slack_message[/\<.*?\>/], user_list[x.join("")])
+      elsif !(raw_slack_message[/\<.*?\|/].nil?) && (raw_slack_message.include? "http")
+        mod_user = raw_slack_message[/\@.*?\|/]
+        mod_user.slice!(0)
+        mod_user.slice!(-1)
+        slack_message = raw_slack_message.sub!(raw_slack_message[/\<.*?\>/], user_list[mod_user])
       else
         slack_message = raw_slack_message
       end

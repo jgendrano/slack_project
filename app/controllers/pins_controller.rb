@@ -7,6 +7,7 @@ class PinsController < ApplicationController
   end
 
   def new
+    get_team_info
     @message = Message.find(params["format"])
     @pin = Pin.new
   end
@@ -14,11 +15,32 @@ class PinsController < ApplicationController
   def create
     @pin = Pin.create(pin_params)
     if @pin.save
-      flash[:success] = "Pin added successfully!"
+      flash[:notice] = "Pin added successfully!"
       redirect_to pins_path
     else
-      flash[:warning] = @pin.errors.full_messages.join(', ')
-      redirect_to channel_path(channel.id)
+      flash[:errors] = @pin.errors.full_messages.join(', ')
+      render :new
+    end
+  end
+
+  def show
+    get_team_info
+    @pin = Pin.find(params[:id])
+  end
+
+  def edit
+    get_team_info
+    @pin = Pin.find(params[:id])
+  end
+
+  def update
+    @pin = Pin.find(params[:id])
+    @pin.update(pin_params)
+    if @pin.update(pin_params)
+      flash[:success] = "Pinned message updated successfully!"
+      redirect_to pins_path
+    else
+      create_or_update_failure
     end
   end
 
@@ -36,7 +58,14 @@ private
       :user_id,
       :slack_username,
       :slack_message,
-      :ts
+      :ts,
+      :title,
+      :note
     )
   end
+end
+
+def create_or_update_failure
+  flash[:warning] = @review.errors.full_messages.join(', ')
+  render :new
 end

@@ -2,12 +2,13 @@
 
     <p class="name">
       <%= link_to image_tag("slacktracklogo.png"), landings_path %>
+
     </p>
   <ul class="title-area">
     <li class="toggle-topbar">
       <% if user_signed_in? %>
         <% if !(current_user.name == nil) %>
-          <li> Signed in as <b><%= current_user.name %></b> on Team <b><%= @team_name %></b></li>
+          <li> Signed in as  <p class="fancy"><%= current_user.name %></p><br>Team <b><%= @team_name %></b></li>
           <li><b><%= link_to 'Channels', channels_path %> ||
           <%= link_to 'Pinned Messages', pins_path %></li></b>
         <% else %>

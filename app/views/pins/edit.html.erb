@@ -1,0 +1,42 @@
+<div class="row">
+
+  <div class="large-12 columns test-move test-box" style="background-color:white;">
+
+
+
+    <b><center><h2 class="roboto-stuff channel-title"><font color = "gray">Edit Pinned Message:</font><br> <%= @pin.title %></h2><br>
+      </center><br>
+    </center></b>
+      <%= flash[:message] %>
+
+        <% x = @pin.slack_message %>
+        <% x = x.tr('<>', '') %>
+        <% y = auto_link(x, html: { target: '_blank' }) %>
+        <li><b><%= "#{@pin.slack_username}"%></b>
+
+          <%=
+        "(#{@pin.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+         <%= y %><br>
+
+         <center><%= form_for(@pin, :url => {:controller => 'pins', action: :update, id: params[:id]}) do |f| %>
+           <%= f.hidden_field :id %>
+           <%= f.hidden_field :user_id, :value => @pin.user_id %>
+           <%= f.hidden_field :slack_username, :value => @pin.slack_username %>
+           <%= f.hidden_field :slack_message, :value => @pin.slack_message %>
+           <%= f.hidden_field :ts, :value => @pin.ts %><br>
+           <%= f.label :title %>
+           <%= f.text_field :title, placeholder: "Enter a title for your saved Slack Message here.", maxlength: 30, class: "input"%>
+           <%= f.label :note %>
+           <%= f.text_area :note, placeholder: "Enter your description for your message here.", size: 1000, class: "input-box"%><br>
+           <%= submit_tag "Edit Pinned Message", class:'button-delete' %>
+         <% end %></center><br>
+
+        <center><b><h5><%= link_to "Cancel Edit", :back %><br>
+          <%= link_to "Return to Pinned Messages", :back %><br>
+        <%= link_to "Return to Slack Channels", channels_path %></h5><br></b></center>
+
+
+  </div>
+
+</div>
+</body>

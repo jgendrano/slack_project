@@ -2,28 +2,56 @@
 
   <div class="large-12 columns test-move test-box" style="background-color:white;">
     <b><center><h2 class="roboto-stuff channel-title">New Pinned Message</h2><br>
-      <h3 class="roboto-stuff"><%= current_user.name%></h3></center><br>
+      <h5><%= link_to "Return to Slack Channel", :back %></h5></center><br><br>
     </center></b>
+      <%= flash[:message] %>
 
-      <% x = @message.slack_message %>
-      <% x = x.tr('<>', '') %>
-      <% y = auto_link(x, html: { target: '_blank' }) %>
-      <li><b><%= "#{@message.slack_username}"%></b> <%=
-      "(#{@message.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
-       <%= y %>
+      <% if @message.nil? %>
+        <% x = params[:pin]["slack_message"] %>
+        <% x = x.tr('<>', '') %>
+        <% y = auto_link(x, html: { target: '_blank' }) %>
+        <li><b><%= "#{params[:pin]["slack_username"]}"%></b>
 
-      <center><%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
-      <%= f.hidden_field :id %>
-      <%= f.hidden_field :user_id, :value => @message.user_id %>
-      <%= f.hidden_field :slack_username, :value => @message.slack_username %>
-      <%= f.hidden_field :slack_message, :value => @message.slack_message %>
-      <%= f.hidden_field :ts, :value => @message.ts %><br>
-      <%= submit_tag "Add Pinned Message" %>
-      <% end %></center><br>
+          <%=
+        "(#{params[:pin]["ts"].to_datetime.strftime('%m/%d/%Y %I:%M%p')}):"%>
+         <%= y %><br>
+
+         <center><%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
+         <%= f.hidden_field :id %>
+         <%= f.hidden_field :user_id, :value => params[:pin]["user_id"] %>
+         <%= f.hidden_field :slack_username, :value => params[:pin]["slack_username"] %>
+         <%= f.hidden_field :slack_message, :value => params[:pin]["slack_message"] %>
+         <%= f.hidden_field :ts, :value =>params[:pin]["ts"].to_datetime %><br>
+         <%= f.label :title %>
+         <%= f.text_field :title, placeholder: "Enter a title for your saved Slack Message here.", maxlength: 30, class: "input"%><br>
+         <%= f.label :note %>
+         <%= f.text_area :note, placeholder: "Enter your description for your message here.", size: 1000, class: "input"%><br>
+         <%= submit_tag "Add Pinned Message" %>
+         <% end %></center>
+
+      <% else %>
+        <% x = @message.slack_message %>
+        <% x = x.tr('<>', '') %>
+        <% y = auto_link(x, html: { target: '_blank' }) %>
+        <li><b><%= "#{@message.slack_username}"%></b>
+                <%=
+        "(#{@message.ts.strftime('%m/%d/%Y %I:%M%p')}):"%>
+         <%= y %><br>
 
 
-
-
+        <center><%= form_for @pin, :url => pins_path(@pin), method: :post do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.hidden_field :user_id, :value => @message.user_id %>
+        <%= f.hidden_field :slack_username, :value => @message.slack_username %>
+        <%= f.hidden_field :slack_message, :value => @message.slack_message %>
+        <%= f.hidden_field :ts, :value => @message.ts %><br>
+        <%= f.label :title %>
+        <%= f.text_field :title, placeholder: "Enter a title for your saved Slack Message here.", maxlength: 30, class: "input"%><br>
+        <%= f.label :note %>
+        <%= f.text_area :note, placeholder: "Enter your description for your message here.", size: 1000, class: "input-box"%><br>
+        <%= submit_tag "Add Pinned Message", class:'button-delete' %>
+        <% end %></center><br>
+      <% end %>
       <b><center><center><b><h5><%= link_to "Return to Slack Channels", channels_path %></h5><br>
 
 
