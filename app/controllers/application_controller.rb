@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    # request.env['omniauth.origin'] || stored_location_for(resource) || landings_path
     landings_path
   end
 
@@ -22,11 +21,13 @@ class ApplicationController < ActionController::Base
     uri=URI("https://slack.com/api/team.info?token=#{current_user.token}&pretty=1")
     response = Net::HTTP.get_response(uri)
     team = JSON.parse(response.body)
+    if team["ok"] == false
+      redirect_to signout_path and return
+    end
     @team_name = team["team"]["name"]
     @team_domain = team["team"]["domain"]
     @team_pic = team["team"]["icon"]["image_132"]
   end
-
   def get_username_list(token)
     uri = URI("https://slack.com/api/users.list?token=#{token}")
     response = Net::HTTP.get_response(uri)
