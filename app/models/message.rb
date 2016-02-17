@@ -2,6 +2,8 @@ class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :channel
 
+private
+
   def self.current_messages(current_user, channel)
     count = 1
     user_list = self.get_username_list(current_user.token)
@@ -77,7 +79,6 @@ class Message < ActiveRecord::Base
   end
 end
 
-private
 
 def message_params
   params.require(:message).permit(:slack_username, :ts, :slack_message, :id)
