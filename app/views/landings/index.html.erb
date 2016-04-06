@@ -6,7 +6,7 @@
     <b><center><h2 class="roboto-stuff">Welcome to <%= image_tag "slacktracklogo-small.png", class: 'align-me' %>!</h2></center></b>
     <center><h4>Signed in as <b><%= current_user.name %></b> in <b><%= @team_name %></b><br></h4>
       <h5><i><a href="http://<%= @team_domain %>.slack.com" target="_blank"><%= @team_domain %>.slack.com</a></i></h5></center><br>
-    <center>  <p class="splash-text">SlackTrack was built with love by <a href="http://www.twitter.com" target="blank">Julie
+    <center> <p class="splash-text">SlackTrack was built with love by <a href="http://www.twitter.com" target="blank">Julie
         Gendrano</a> during <a href="http://www.launchacademy.com" target="blank">Launch Academy</a>'s Winter 2015
         Cohort.  Slack is a real-time instant-messaging system that many corporate, educational, and
         personal teams use to share ideas and collaborate.  Most Slack users utilize their free service to discuss project ideas
@@ -16,9 +16,6 @@
 
         To begin, please browse your Slack Team's available public channels
        or view your existing saved Pins:<br><br></center>
-
-        <!-- <span class="align-me-next"><%= button_to "Channels", channels_path, {class: 'button'} %></span>
-        <span class="align-me-next"><%= button_to "Saved Messages", pins_path, {class: 'button'} %></span> -->
       </p>
       </center>
 

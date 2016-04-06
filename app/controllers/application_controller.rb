@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    # request.env['omniauth.origin'] || stored_location_for(resource) || landings_path
     landings_path
   end
 
@@ -33,8 +32,6 @@ class ApplicationController < ActionController::Base
     users = JSON.parse(response.body)['members']
     user_list = Hash.new
     users.each do |user|
-      # if user["real_name"] == '' && user["name"] == ''
-      #   ser_list[user["id"]] = "@#{user["username"]}"
       if user["real_name"] == ''
         user_list[user["id"]] = "@#{user["name"]}"
       else
