@@ -3,7 +3,6 @@ class Message < ActiveRecord::Base
   belongs_to :channel
 
 include MessagesHelper
-end
 
 private
 

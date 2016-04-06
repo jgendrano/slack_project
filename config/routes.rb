@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :messages
   resources :pins
 
+  devise_scope :user do
+    get '/signout', to: 'devise/sessions#destroy', as: :signout
+  end
+
+
   post "/pins" => "pins#create"
   # get ':action' => 'static#:action'
 end
