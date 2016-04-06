@@ -5,7 +5,6 @@ before_action :authenticate_user!
       Channel.delete_all
       Channel.reset_pk_sequence
       get_team_info
-      binding.pry
       create
     end
   end
